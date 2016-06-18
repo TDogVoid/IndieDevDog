@@ -1,7 +1,6 @@
 node_modules/
 production.json
 classifier.json
-CronJob/twitterConfigCron.js
 settings.json
 mup.json
 SMSSpamCollection.txt
