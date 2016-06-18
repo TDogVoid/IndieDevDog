@@ -1,0 +1,31 @@
+<template name="tweet" id="tweet">
+    <div class="tweet {{classified}}">
+        <div class="Tweet-text">
+            <div class="ProfileImage">
+                <a target="_blank" href="https://twitter.com/{{user.screen_name}}"><img src={{user.profile_image_url}} /></a>
+                <h3>{{user.name}}</h3>
+            </div>
+            {{text}}
+        </div>
+        <div class="Tweet-Buttons">
+            <button class="MarkNotSpam btn btn-primary">Not Spam</button>
+            <button class="MarkSpam btn btn-warning">Spam</button>
+            <button class="AddTestString btn">Add Test String</button>
+            <button class="Remove btn btn-danger">x</button>
+        </div>
+        <div class="img tweetImg">
+            <img src={{getImage}} />
+        </div>
+        <div class="Tweet-link">
+            <p>
+                <a target="_blank" href="https://twitter.com/statuses/{{id_str}}">Tweet</a>
+            </p>
+        </div>
+        <div class="Tweet-Classification">
+            <p>
+                Currently Classify as <span class="Classify">{{classified}}</span>
+            </p>
+        </div>
+
+    </div>
+</template>

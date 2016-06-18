@@ -1,0 +1,35 @@
+<template name="homeContent">
+    <div class="container">
+        <div class="main">
+            {{#if currentUser}}
+            <div class="row">
+                <div class="col-md-4">
+                    {{> AddSpamStr}}
+                </div>
+            </div>
+            {{> getTweets}}
+
+
+            <h1>Tweets List for training</h1>
+            <ul>
+                {{#each tweets}} {{> tweet}} {{/each}}
+            </ul>
+            {{/if}}
+        </div>
+
+    </div>
+</template>
+
+<template name="getTweets">
+    <button class="GetTweets btn btn-primary">Get Tweets</button>
+    <button class="Purge btn btn-warning">Purge</button>
+    <button class="ClassifyAll btn">Classify All</button>
+    <button class="saveFile btn">Save file</button>
+</template>
+<template name="AddSpamStr">
+    <h3>Add Spam</h3>
+    <form class="new-spam right">
+        <textarea rows="4" cols="50" type="text" name="text" placeholder="Type to add spam text"></textarea>
+        <input type="submit" />
+    </form>
+</template>

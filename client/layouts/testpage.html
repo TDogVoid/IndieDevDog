@@ -1,0 +1,25 @@
+<template name="testpage">
+    {{#if currentUser}}
+    <h3>Test string</h3>
+    <form class="Add-test-string">
+        <textarea rows="4" cols="50" type="text" name="text" placeholder="Type to test text"></textarea>
+        <input type="submit" />
+    </form>
+    <h1>These should be classified as spam and red if not hit the spam button</h1>
+    {{#each teststrings}} {{> teststring}} {{/each}} {{/if}}
+</template>
+
+<template name="teststring">
+    <div class="tweet {{classified}}">
+        <div class="classifier">
+            Currently classified as {{classified}}
+        </div>
+        <div class="text">
+            {{text}}
+        </div>
+        <div class="Tweet-Buttons">
+            <button class="MarkSpam btn btn-warning">Spam</button>
+            <button class="Remove btn btn-danger">x</button>
+        </div>
+    </div>
+</template>
