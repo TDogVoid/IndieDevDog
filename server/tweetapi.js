@@ -49,7 +49,7 @@ function SearchTwitter(lastID, callback) {
         show_all_inline_media: 'true',
         since_id: lastID
     }, Meteor.bindEnvironment(function(error, reply) {
-        if (error) return callback(error);
+        if (error) return console.log(error);
 
         var tweets = reply.statuses;
 
@@ -61,5 +61,22 @@ function SearchTwitter(lastID, callback) {
             ClassifyUpdate(tweets[i].text, id);
         }
         callback();
+    }));
+}
+
+export function GetTweetsAccount(username,callback){
+    TwitClient.get('statuses/user_timeline', {
+        screen_name: username,
+        count: 200,
+        include_rts: false
+    }, Meteor.bindEnvironment(function(error, reply) {
+        if (error) return console.log(error);
+
+        var TweetsText = [];
+
+        for (var i = 0; i < reply.length; i++) {
+            TweetsText.push(reply[i].text);
+        }
+        callback(TweetsText);
     }));
 }

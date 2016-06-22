@@ -2,11 +2,8 @@
     <div class="container">
         <div class="main">
             {{#if currentUser}}
-            <div class="row">
-                <div class="col-md-4">
-                    {{> AddSpamStr}}
-                </div>
-            </div>
+            {{> AddSpamStr}}
+            {{> addTwitterAccountTraining}}
             {{> getTweets}}
 
 
@@ -20,16 +17,40 @@
     </div>
 </template>
 
+<template name="addTwitterAccountTraining">
+    <div class="center">
+        <h2>Add Twitter Account as training</h2>
+        <div>
+            <h3>Spam Twitter Account</h3>
+            <form class="AddTwitterAccountSpam">
+                <input type="text" name="text" placeholder="Twitter account as spam" />
+            </form>
+            {{SpamTwitterAccount}}
+        </div>
+        <div>
+            <h3>Ham Twitter Account</h3>
+            <form class="AddTwitterAccountHam">
+                <input type="text" name="text" placeholder="Twitter account as ham" />
+            </form>
+            {{HamTwitterAccount}}
+        </div>
+    </div>
+</template>
+
 <template name="getTweets">
     <button class="GetTweets btn btn-primary">Get Tweets</button>
     <button class="Purge btn btn-warning">Purge</button>
     <button class="ClassifyAll btn">Classify All</button>
     <button class="saveFile btn">Save file</button>
 </template>
+
 <template name="AddSpamStr">
-    <h3>Add Spam</h3>
-    <form class="new-spam right">
-        <textarea rows="4" cols="50" type="text" name="text" placeholder="Type to add spam text"></textarea>
-        <input type="submit" />
-    </form>
+    <div class="Add-Spam-text center">
+
+        <h3>Add Spam</h3>
+        <form class="new-spam right">
+            <textarea rows="4" cols="50" type="text" name="text" placeholder="Type to add spam text"></textarea>
+            <input type="submit" />
+        </form>
+    </div>
 </template>

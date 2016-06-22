@@ -7,12 +7,16 @@ import {
 } from '../imports/api/tweets.js';
 import {
     ReclassifyAll,
-    ClassHam
+    ClassHam,
+    ClassSpam,
+    trainer,
+    save
 } from './Classify.js';
 import {
     GetTweets,
     TweetPurge,
-    PostRetweet
+    PostRetweet,
+    GetTweetsAccount
 } from './tweetapi.js';
 
 function randomInRange(min, max) {
@@ -60,7 +64,48 @@ Meteor.methods({
             throw new Meteor.Error('not-authorized');
         }
         TweetPurge();
+    },
+
+    'AddTwitterAccountSpam' : function(str,callback){
+        if (!Meteor.userId()) {
+            throw new Meteor.Error('not-authorized');
+        }
+        check(str, String);
+        var twittertag = /^@/;
+        var subst = '';
+        if (twittertag.test(str)) {
+            str = str.replace(twittertag, subst);
+        }
+        console.log(str + ' added as Spam');
+        GetTweetsAccount(str, function(TweetsText){
+            for (var i = 0; i < TweetsText.length; i++) {
+                trainer(TweetsText[i], ClassSpam);
+            }
+            save();
+        });
+        return str;
+    },
+
+    'AddTwitterAccountHam' : function(str){
+        if (!Meteor.userId()) {
+            throw new Meteor.Error('not-authorized');
+        }
+        check(str, String);
+        var twittertag = /^@/;
+        var subst = '';
+        if (twittertag.test(str)) {
+            str = str.replace(twittertag, subst);
+        }
+        console.log(str + ' added as Ham');
+        // GetTweetsAccount(str, function(TweetsText){
+        //     for (var i = 0; i < TweetsText.length; i++) {
+        //         trainer(TweetsText[i], ClassHam);
+        //     }
+        //     save();
+        // });
+        return str;
     }
+
 });
 
 

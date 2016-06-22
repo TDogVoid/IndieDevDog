@@ -39,3 +39,18 @@ img {
 .nextTweet{
   border: orange solid 10px;
 }
+.center{
+  margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 50%;
+}
+.AddTwitterAccountSpam input[type=text] {
+    background-color: #d12e2e;
+    color: white;
+}
+
+.AddTwitterAccountHam input[type=text] {
+    background-color: #0d4e00;
+    color: white;
+}

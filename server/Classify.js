@@ -24,9 +24,6 @@ export function ReclassifyAll() {
     });
     TestStrings.find({}).forEach(function(test) {
         s = classifier.classify(test.text);
-        console.log(test.text);
-        console.log(classifier.getClassifications(test.text));
-        console.log(s);
         TestStrings.update(test._id, {
             $set: {
                 classified: s
@@ -58,11 +55,11 @@ function trainerArr(arr, type) {
     }
 };
 
-function trainer(str, type) {
+export function trainer(str, type) {
     classifier.addDocument(str, type);
 };
 
-function save() {
+export function save() {
     classifier.train();
     ReclassifyAll();
     SaveClassifierFile();

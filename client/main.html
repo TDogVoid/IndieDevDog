@@ -27,8 +27,10 @@
                     <a class="navbar-brand" href="../">IndieDevDog</a>
                 </div>
                 <ul class="nav navbar-nav">
+                    {{#if currentUser}}
                     <li><a href="/testpage">Testpage</a></li>
                     <li><a href="classifier.json" download>Download Classifier</a></li>
+                    {{/if}}
                 </ul>
                 <div class="navbar-right">
                     {{> loginButtons align="right"}}
